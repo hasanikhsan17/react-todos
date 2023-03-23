@@ -1,18 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          We made first React js.
-        </p>
-      </header>
+    <div className="mt-5 container">
+      <div className="card">
+        <div className="card-header">Your Todo's</div>
+        <div className="card-body">
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Description</th>
+                <th scope="col">Assigned</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="col">1</th>
+                <td>Feed dog</td>
+                <td>Eric</td>
+              </tr>
+              <tr>
+                <th scope="col">2</th>
+                <td>Get haircut</td>
+                <td>Eric</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
