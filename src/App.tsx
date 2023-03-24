@@ -4,30 +4,32 @@ import TodoTable from "./component/TodoTable";
 import NewTodoForm from "./component/NewTodoForm";
 
 function App() {
+  const [showAddTodoForm, setShowTodoForm] = useState(false);
+
   const [todos, setTodos] = useState([
     { rowNumber: 1, rowDescription: "Feed puppy", rowAssigned: "User One" },
     { rowNumber: 2, rowDescription: "Water plans", rowAssigned: "User Two" },
     { rowNumber: 3, rowDescription: "Make a dinner", rowAssigned: "User One" },
   ]);
 
-  const addTodo = (description, assigned) => {
+  const addTodo = (description: string, assigned: string) => {
     let rowNumber = 0;
     if (todos.length > 0) {
       rowNumber = todos[todos.length - 1].rowNumber + 1;
     } else {
       rowNumber = 1;
     }
-      const newTodo = {
-        rowNumber: rowNumber,
-        rowDescription: description,
-        rowAssigned: assigned,
-      };
-      setTodos((todos) => [...todos, newTodo]);
+    const newTodo = {
+      rowNumber: rowNumber,
+      rowDescription: description,
+      rowAssigned: assigned,
+    };
+    setTodos((todos) => [...todos, newTodo]);
   };
 
-  const deleteTodo = (deleteTodoRowNumber) => {
-    let filtered = todos.filter(function(value) {
-      return value.rowNumber !== deleteTodoRowNumber
+  const deleteTodo = (deleteTodoRowNumber: number) => {
+    let filtered = todos.filter(function (value) {
+      return value.rowNumber !== deleteTodoRowNumber;
     });
     setTodos(filtered);
   };
@@ -37,11 +39,14 @@ function App() {
       <div className="card">
         <div className="card-header">Your Todo's</div>
         <div className="card-body">
-          <TodoTable todos={todos} deleteTodo={deleteTodo}/>
-          <button className="btn btn-primary" onClick={addTodo}>
-            Add new Todo
+          <TodoTable todos={todos} deleteTodo={deleteTodo} />
+          <button
+            className="btn btn-primary"
+            onClick={() => setShowTodoForm(!showAddTodoForm)}
+          >
+            {showAddTodoForm ? "Close New Todo" : "New Todo"}
           </button>
-          <NewTodoForm addTodo={addTodo} />
+          {showAddTodoForm && <NewTodoForm addTodo={addTodo} />}
         </div>
       </div>
     </div>
