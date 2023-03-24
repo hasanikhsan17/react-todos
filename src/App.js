@@ -11,14 +11,19 @@ function App() {
   ]);
 
   const addTodo = (description, assigned) => {
+    let rowNumber = 0;
     if (todos.length > 0) {
+      rowNumber = todos[todos.length - 1].rowNumber + 1;
+    } else {
+      rowNumber = 1;
+    }
       const newTodo = {
-        rowNumber: todos.length + 1,
+        rowNumber: rowNumber,
         rowDescription: description,
         rowAssigned: assigned,
       };
       setTodos((todos) => [...todos, newTodo]);
-    }
+    
   };
   return (
     <div className="mt-5 container">
@@ -29,7 +34,7 @@ function App() {
           <button className="btn btn-primary" onClick={addTodo}>
             Add new Todo
           </button>
-          <NewTodoForm addTodo={addTodo}/>
+          <NewTodoForm addTodo={addTodo} />
         </div>
       </div>
     </div>
